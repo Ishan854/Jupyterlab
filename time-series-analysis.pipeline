@@ -1,0 +1,316 @@
+{
+  "doc_type": "pipeline",
+  "version": "3.0",
+  "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "id": "elyra-auto-generated-pipeline",
+  "primary_pipeline": "primary",
+  "pipelines": [
+    {
+      "id": "primary",
+      "nodes": [
+        {
+          "id": "c5a58efb-e6e1-4d0b-8c63-cec51fe9d776",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "filename": "load_data.ipynb",
+              "outputs": [
+                "data/noaa-weather-data-jfk-airport/jfk_weather.csv"
+              ],
+              "env_vars": [
+                "DATASET_URL=https://dax-cdn.cdn.appdomain.cloud/dax-noaa-weather-data-jfk-airport/1.1.4/noaa-weather-data-jfk-airport.tar.gz",
+                "ELYRA_RUNTIME_ENV=kfp"
+              ],
+              "dependencies": [],
+              "include_subdirectories": false,
+              "runtime_image": "amancevice/pandas:1.4.1"
+            },
+            "label": "Load Weather Data",
+            "ui_data": {
+              "label": "Load Weather Data",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 16,
+              "y_pos": 205,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "cd9c79cd-cff5-4472-9bf4-2f677f9d5bc0",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "filename": "Part 1 - Data Cleaning.ipynb",
+              "outputs": [
+                "data/noaa-weather-data-jfk-airport/jfk_weather_cleaned.csv"
+              ],
+              "env_vars": [],
+              "dependencies": [],
+              "include_subdirectories": false,
+              "runtime_image": "amancevice/pandas:1.4.1"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "Part 1 - Data Cleaning.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 222,
+              "y_pos": 206,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "26e16d96-2bfd-4a7c-8219-c2e3f7ba8133",
+                  "node_id_ref": "c5a58efb-e6e1-4d0b-8c63-cec51fe9d776",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "45079e1d-0f02-4ccb-b55f-1e68bf993fb5",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "filename": "Part 2 - Data Analysis.ipynb",
+              "outputs": [],
+              "env_vars": [],
+              "dependencies": [],
+              "include_subdirectories": false,
+              "runtime_image": "amancevice/pandas:1.4.1"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "Part 2 - Data Analysis.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 444,
+              "y_pos": 84,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "dbee4b44-bca4-43d8-813e-5a52e4b65a22",
+                  "node_id_ref": "cd9c79cd-cff5-4472-9bf4-2f677f9d5bc0",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "442b7f82-c556-48c7-91bc-a31e1fa37f93",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "component_parameters": {
+              "filename": "Part 3 - Time Series Forcasting.ipynb",
+              "outputs": [],
+              "env_vars": [],
+              "dependencies": [],
+              "include_subdirectories": false,
+              "runtime_image": "amancevice/pandas:1.4.1"
+            },
+            "label": "",
+            "ui_data": {
+              "label": "Part 3 - Time Series Forcasting.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20viewBox%3D%220%200%2022%2022%22%3E%0A%20%20%3Cg%20class%3D%22jp-icon-warn0%20jp-icon-selectable%22%20fill%3D%22%23EF6C00%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.7%203.3v15.4H3.3V3.3h15.4m1.5-1.5H1.8v18.3h18.3l.1-18.3z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M16.5%2016.5l-5.4-4.3-5.6%204.3v-11h11z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A",
+              "x_pos": 449,
+              "y_pos": 307,
+              "description": "Run notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "50b753e2-57c3-4a40-9f17-dea613a9d620",
+                  "node_id_ref": "cd9c79cd-cff5-4472-9bf4-2f677f9d5bc0",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "app_data": {
+        "ui_data": {
+          "comments": [
+            {
+              "id": "6e79d1e2-c095-4c75-b38d-a59251302182",
+              "x_pos": 13,
+              "y_pos": 126,
+              "width": 167,
+              "height": 30,
+              "class_name": "d3-comment-rect",
+              "content": "Download the data",
+              "associated_id_refs": [
+                {
+                  "node_ref": "c5a58efb-e6e1-4d0b-8c63-cec51fe9d776"
+                }
+              ]
+            },
+            {
+              "id": "60125461-b36b-4598-a1b8-e9b00f9f6ffb",
+              "x_pos": 223,
+              "y_pos": 293,
+              "width": 161,
+              "height": 31,
+              "class_name": "d3-comment-rect",
+              "content": "Clean the Data",
+              "associated_id_refs": [
+                {
+                  "node_ref": "cd9c79cd-cff5-4472-9bf4-2f677f9d5bc0"
+                }
+              ]
+            },
+            {
+              "id": "262124b6-54e3-4471-b44a-a06ae311f672",
+              "x_pos": 446,
+              "y_pos": 21,
+              "width": 158,
+              "height": 31,
+              "class_name": "d3-comment-rect",
+              "content": "Analyze the Data\n",
+              "associated_id_refs": [
+                {
+                  "node_ref": "45079e1d-0f02-4ccb-b55f-1e68bf993fb5"
+                }
+              ]
+            },
+            {
+              "id": "9a8dd37b-82a1-45f5-b61c-07eccd271979",
+              "x_pos": 448,
+              "y_pos": 387,
+              "width": 163,
+              "height": 34,
+              "class_name": "d3-comment-rect",
+              "content": "Time Series of the Data",
+              "associated_id_refs": [
+                {
+                  "node_ref": "442b7f82-c556-48c7-91bc-a31e1fa37f93"
+                }
+              ]
+            }
+          ]
+        },
+        "version": 7,
+        "properties": {
+          "name": "time-series-analysis",
+          "runtime": "Generic",
+          "description": "Download the Data"
+        }
+      },
+      "runtime_ref": ""
+    }
+  ],
+  "schemas": []
+}
