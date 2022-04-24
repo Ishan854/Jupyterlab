@@ -37,6 +37,10 @@ jobs:
         name: Jupyter Lab Execution
         run: jupyter execute load_data.ipynb
         shell: bash
+      - id: jupyter
+        name: Jupyter Lab Execution
+        run: jupyter execute Pat_1_Data_Cleaning.ipynb
+        shell: bash  
         
         
 
