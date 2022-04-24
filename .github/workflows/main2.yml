@@ -35,7 +35,7 @@ jobs:
 
       - id: jupyter
         name: Jupyter Lab Execution
-        run: jupyter execute Part 1 - Data Cleaning.ipynb
+        run: jupyter execute Part1-DataCleaning.ipynb
         shell: bash
         
         
