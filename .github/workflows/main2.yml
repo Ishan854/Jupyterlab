@@ -33,7 +33,7 @@ jobs:
           
       - run: pip install -r requirements.txt
 
-      - id: jupyter
+      - id: jupyter2
         name: Jupyter Lab Execution
         run: jupyter execute Part_1_Data_Cleaning.ipynb
         shell: bash
